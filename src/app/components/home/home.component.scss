@@ -1,0 +1,22 @@
+h1,h2 {
+  padding: 5px;
+  width: 100%;
+  margin: 20px auto;
+  max-width: 230px;
+  border: 5px solid #9DB6EC;
+  color: #9DB6EC;
+  font-weight: 800;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.box-shopping-cart {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #e8e3e3;
+  margin: 20px;
+  app-shopping-cart {
+    padding: 20px 0 0 0;
+    width: 100%;
+  }
+}

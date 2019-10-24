@@ -1,0 +1,51 @@
+<div class="box-shopping-cart">
+  <span class="title">
+    Shopping Cart <span class="">({{shoppingCart.length}}) product(s)</span>
+  </span>
+  <thead>
+      <tr class="title-food-box">
+        <td>Quantity</td>
+        <td>Price</td>
+      </tr>
+    </thead>
+</div>
+  
+<div *ngIf="shoppingCart.length>0;else shoppingCartvaciotmpl" class="board">
+  <table>
+    <tbody>
+      <tr *ngFor="let item of shoppingCart; let indice=index" class="name-food">
+        <div class="name-box">
+          <td class="name">{{item.name}}</td>
+          <td class="category">{{item.category}}</td>
+          <button (click)="removeProduct(item, indice)" ><em class="fa fa-trash fa-lg"></em></button>
+        </div>
+        <div class="flex-space">
+          <td>
+            <span>1</span>
+          </td>
+          <td *ngIf="item.voucher">{{item.offert}}{{item.coin}}</td>
+          <td *ngIf="!item.voucher">{{item.price}}{{item.coin}}</td>
+        </div>
+      </tr>
+    </tbody>
+    <!-- finaly result -->
+    <tfoot>
+        <tr class="footer-box">
+          <td>
+            <span class="total">Total: </span>
+            <app-check-voucher (validOrInvalid)="discountVouche($event)"></app-check-voucher>
+            <span *ngIf="discountDrinks" class="discount-price top"> {{total + discountDrinksPrice}}£ -{{discountSignDrinks}} (Discount {{discountNameDrinks}})</span>
+            <span *ngIf="discountCooking" class="discount-price"> {{total + discountCookingPrice}}£ -{{discountSignCooking}} (Discount {{discountNameCooking}})</span>
+            <span class="price-total">{{total}}£</span>
+          </td>
+        </tr>
+    </tfoot>
+  </table>
+</div>
+
+<ng-template #shoppingCartvaciotmpl class="ng-template">
+  <div class="empty-box">
+    <strong>The shopping cart is empty.</strong>
+  </div>
+</ng-template>
+  
